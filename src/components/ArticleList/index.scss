@@ -1,0 +1,9 @@
+@import '~antd/dist/antd.css';
+
+.articleList-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 26px;
+  justify-content: space-between;
+}
