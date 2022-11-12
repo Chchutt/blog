@@ -21,11 +21,20 @@ export const ArticleCreateEdit = (props: Props) => {
   const [data, setData] = useState<ArticleFace>()
   const [tags, setTags] = useState<string[] | undefined>([])
   const [newTag, setNewTag] = useState<string[]>()
+  const [redirect, setRedirect] = useState<boolean>(false)
   const dispatch = useDispatch()
   const { id } = useParams<string>()
   const { register, handleSubmit } = useForm<any>({ mode: 'all' })
-  const newArticle = (data:{title: string, shortDescription: string, text: string, tags: string}) => dispatch(articlePost(data.title, data.shortDescription, data.text, tags))
-  const updateArticle = ((data:{title: string, shortDescription: string, text: string}) => dispatch(updatePost(id, data.title, data.shortDescription, data.text, tags)))
+  const newArticle = (data:{title: string, shortDescription: string, text: string, tags: string}) => {
+    dispatch(articlePost(data.title, data.shortDescription, data.text, tags))
+    setRedirect(true)
+    setTimeout(() => setRedirect(false), 1000)
+  }
+  const updateArticle = ((data:{title: string, shortDescription: string, text: string}) => {
+    dispatch(updatePost(id, data.title, data.shortDescription, data.text, tags))
+    setRedirect(true)
+    setTimeout(() => setRedirect(false), 1000)
+  })
   if (!flag) {
     useEffect(() => {
       getCurrentArticle(id).then((data) => {
@@ -33,6 +42,9 @@ export const ArticleCreateEdit = (props: Props) => {
         setTags(data.article.tagList)
       })
     }, [])
+  }
+  if (redirect) {
+    return <Navigate to="/articles" />
   }
   return (
     <div className="createEdit-container">
@@ -47,7 +59,6 @@ export const ArticleCreateEdit = (props: Props) => {
             placeholder="Title"
             {...register('title', {
               onChange: ((e) => setData(e.target.value)),
-              required: 'Title is required',
             })}
           /> : <input
             className="createEdit-input title"
@@ -65,7 +76,6 @@ export const ArticleCreateEdit = (props: Props) => {
             placeholder="Short description"
             {...register('shortDescription', {
               onChange: ((e) => setData(e.target.value)),
-              required: 'Short description is required',
             })}
           /> : <input
             className="createEdit-input shortDescription"
@@ -83,7 +93,6 @@ export const ArticleCreateEdit = (props: Props) => {
             style={{ resize: 'none', height: '168px' }}
             {...register('text', {
               onChange: ((e) => setData(e.target.value)),
-              required: 'Text is required',
             })}
           /> : <textarea
             className="createEdit-input text"

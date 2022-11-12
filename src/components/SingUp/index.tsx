@@ -45,6 +45,9 @@ export function SingUp(props: Props) {
     if (regState.isLogin) {
       return <Navigate to="/articles/" />
     }
+    if (regState.registration) {
+      return <Navigate to="/sing-up" />
+    }
     return (
       <form onSubmit={handleSubmit(registerSubmit)}>
         <div className="content-container">
@@ -149,7 +152,6 @@ export function SingUp(props: Props) {
             >
               <input
                 type="checkbox"
-                checked
                 style={{
                   fontSize: '14px',
                   lineHeight: '22px',
@@ -230,7 +232,6 @@ export function SingUp(props: Props) {
             <div className="reg-privacy">
               <input
                 type="checkbox"
-                checked
                 style={{
                   fontSize: '14px',
                   lineHeight: '22px',
