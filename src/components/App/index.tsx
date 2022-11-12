@@ -4,6 +4,7 @@ import { HomePage } from '../../pages/HomePage'
 import { SingUpPage } from '../../pages/SingUpPage'
 import { Layout } from '../Layout'
 import { ArticleCreateEditPage } from '../../pages/ArticleCreateEditPage'
+import { PageNotFound } from '../../pages/PageNotFound'
 
 export function App() {
   return (
@@ -37,6 +38,7 @@ export function App() {
           }}
           />}
         />
+        <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>
   )

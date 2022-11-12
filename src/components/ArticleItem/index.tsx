@@ -9,7 +9,7 @@ import { delCurrentArticle, getArticleList } from '../../redux/actions/articleAc
 import { delArticleBySlug, favorArticleBySlug } from '../../apis/ArticlesApi'
 
 export function ArticleItem ({
-  description, body, author, createdAt, tagList, favorited, slug, title, favoritesCount
+  description, body, author, createdAt, tagList, favorited, slug, title, favoritesCount, index
 }:ArticleFace) {
   const [newClass, setClass] = useState(favorited)
   const articlesState = useSelector((state:SuperArticleState) => state.articles.articles)
@@ -20,7 +20,7 @@ export function ArticleItem ({
   }, [id])
   return (
     <>
-      <div className="article-container">
+      <div className="article-container" key={index}>
         <div
           className="test-container"
           style={{
@@ -32,26 +32,11 @@ export function ArticleItem ({
               <Link to={`/articles/${slug}`}>
                 <p>{desLenCheck(title, 35)}</p>
               </Link>
-              {
-                tagList.map((item:string, index) => {
-                  if (item) {
-                    return (
-                      <input
-                        key={index}
-                        className="article-tag"
-                        type="button"
-                        value={item}
-                      />
-                    )
-                  }
-                  return null
-                })
-              }
             </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', paddingTop: '10px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginLeft: '13px' }}>
               {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events */}
               <div
-                className={`${newClass ? 'active' : 'disable'}`}
+                className={`${(favorited) ? 'active' : 'disable'}`}
                 onClick={() => {
                   if (newClass) {
                     delArticleBySlug(slug)
@@ -62,9 +47,8 @@ export function ArticleItem ({
                 }}
                 style={{ marginRight: '5px' }}
               />
-              <p style={{ color: '#000000BF', fontSize: '12px' }}>{newClass ? (favoritesCount + 1) : favoritesCount }</p></div>
+              <p style={{ color: '#000000BF', fontSize: '12px' }}>{(favorited || newClass) ? (favoritesCount + 1) : favoritesCount }</p></div>
           </div>
-
           <div className="article-profile-content">
             <div>
               <p className="article-profile-name" style={{ fontSize: '18px', color: '#000000D9' }}>{author.username}</p>
@@ -89,6 +73,23 @@ export function ArticleItem ({
               />
             </div>
           </div>
+        </div>
+        <div style={{ display: 'flex', alignSelf: 'flex-start' }}>
+          {
+            tagList.map((item:string, index) => {
+              if (item) {
+                return (
+                  <input
+                    key={index}
+                    className="article-tag"
+                    type="button"
+                    value={item}
+                  />
+                )
+              }
+              return null
+            })
+          }
         </div>
         <div className="article-post-text">
           {desLenCheck(description, 135)}

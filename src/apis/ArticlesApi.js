@@ -72,7 +72,6 @@ export async function putArticleBySlug(slug, title, description, body, tagList) 
       },
     }
   )
-  console.log(res.data)
   return res.data
 }
 

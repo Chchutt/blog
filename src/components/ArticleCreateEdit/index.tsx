@@ -1,21 +1,25 @@
 import './index.scss'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Navigate } from 'react-router-dom'
 
 import {
   articlePost, getCurrentArticle, updatePost
 } from '../../redux/actions/articleAction'
-import { ArticleFace } from '../../redux/actions/actionCreators'
+import { ArticleFace, Profile } from '../../redux/actions/actionCreators'
 
 interface Props{
     flag: boolean
 }
 export const ArticleCreateEdit = (props: Props) => {
+  const isLoginState = useSelector((state: Profile) => state.profile.isLogin)
+  if (!isLoginState) {
+    return <Navigate to="/articles" />
+  }
   const { flag } = props
   const [data, setData] = useState<ArticleFace>()
-  const [tags, setTags] = useState<string[] | undefined>()
+  const [tags, setTags] = useState<string[] | undefined>([])
   const [newTag, setNewTag] = useState<string[]>()
   const dispatch = useDispatch()
   const { id } = useParams<string>()

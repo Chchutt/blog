@@ -11,7 +11,7 @@ const articlePoolState = {
 }
 const profileState = {
   registration: false,
-  isLogin: true,
+  isLogin: false,
   error: null,
 }
 

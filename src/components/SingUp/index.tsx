@@ -1,6 +1,6 @@
 import '../Body/index.scss'
 import './index.scss'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -42,6 +42,9 @@ export function SingUp(props: Props) {
     reset()
   }, [regState])
   const RegView = () => {
+    if (regState.isLogin) {
+      return <Navigate to="/articles/" />
+    }
     return (
       <form onSubmit={handleSubmit(registerSubmit)}>
         <div className="content-container">
@@ -182,6 +185,9 @@ export function SingUp(props: Props) {
     )
   }
   const SingView = () => {
+    if (regState.isLogin) {
+      return <Navigate to="/articles" />
+    }
     return (
       <form onSubmit={handleSubmit(loginSubmit)}>
         <div className="content-container">
@@ -261,6 +267,9 @@ export function SingUp(props: Props) {
     )
   }
   const EditingView = () => {
+    if (!regState.isLogin) {
+      return <Navigate to="/articles" />
+    }
     return (
       <form onSubmit={handleSubmit(editingProfile)}>
         <div className="content-container">

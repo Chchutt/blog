@@ -18,7 +18,7 @@ export function ArticleList() {
   return (
     <div className="articleList-container">
       {
-        articlesState.map((item) => {
+        articlesState.map((item, index) => {
           const {
             description, body, author, createdAt,
             tagList, favorited, favoritesCount,
@@ -26,6 +26,7 @@ export function ArticleList() {
           } = item
           return (
             <ArticleItem
+              index={index}
               updatedAt={updatedAt}
               title={title}
               slug={slug}
