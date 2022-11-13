@@ -1,11 +1,13 @@
-import './index.scss'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useParams, Navigate } from 'react-router-dom'
 
+import './index.scss'
 import {
-  articlePost, getCurrentArticle, updatePost
+  articlePost,
+  getCurrentArticle,
+  updatePost,
 } from '../../redux/actions/articleAction'
 import { ArticleFace, Profile } from '../../redux/actions/actionCreators'
 
@@ -13,11 +15,8 @@ interface Props{
     flag: boolean
 }
 export const ArticleCreateEdit = (props: Props) => {
-  const isLoginState = useSelector((state: Profile) => state.profile.isLogin)
-  if (!isLoginState) {
-    return <Navigate to="/articles" />
-  }
   const { flag } = props
+  const isLoginState = useSelector((state: Profile) => state.profile.isLogin)
   const [data, setData] = useState<ArticleFace>()
   const [tags, setTags] = useState<string[] | undefined>([])
   const [newTag, setNewTag] = useState<string[]>()
@@ -35,73 +34,60 @@ export const ArticleCreateEdit = (props: Props) => {
     setRedirect(true)
     setTimeout(() => setRedirect(false), 1000)
   })
-  if (!flag) {
-    useEffect(() => {
+
+  useEffect(() => {
+    if (!flag) {
       getCurrentArticle(id).then((data) => {
         setData(data.article)
         setTags(data.article.tagList)
       })
-    }, [])
-  }
+    }
+  }, [])
+
   if (redirect) {
     return <Navigate to="/articles" />
   }
+  if (!isLoginState) {
+    return <Navigate to="/articles" />
+  }
   return (
-    <div className="createEdit-container">
-      {flag ? <h1 className="createEdit-container-h1">Create new article</h1> : <h1 className="createEdit-container-h1">Edit article </h1>}
+    <section className="createEdit-container">
+      <h1 className="createEdit-container-h1">{flag ? 'Create new article' : 'Edit article'}</h1>
       <div className="createEdit-inputs-container">
         <form onSubmit={flag ? handleSubmit(newArticle) : handleSubmit(updateArticle)}>
           <p className="createEdit-title">Title</p>
-          { data ? <input
-            value={data.title}
+          <input
+            value={data ? data.title : undefined}
             className="createEdit-input title"
             type="text"
             placeholder="Title"
             {...register('title', {
-              onChange: ((e) => setData(e.target.value)),
+              onChange: (data ? (e) => setData(e.target.value) : undefined),
+              required: (data ? false : 'Title is required')
             })}
-          /> : <input
-            className="createEdit-input title"
-            type="text"
-            placeholder="Title"
-            {...register('title', {
-              required: 'Title is required',
-            })}
-          />}
+          />
           <p className="createEdit-shortDescription">Short description</p>
-          {data ? <input
-            value={data.description}
+          <input
+            value={data ? data.description : undefined}
             className="createEdit-input shortDescription"
             type="text"
             placeholder="Short description"
             {...register('shortDescription', {
-              onChange: ((e) => setData(e.target.value)),
+              onChange: (data ? (e) => setData(e.target.value) : undefined),
+              required: (data ? false : 'Short description is required')
             })}
-          /> : <input
-            className="createEdit-input shortDescription"
-            type="text"
-            placeholder="Short description"
-            {...register('shortDescription', {
-              required: 'Short description is required',
-            })}
-          />}
+          />
           <p className="createEdit-text">Text</p>
-          {data ? <textarea
-            value={data.body}
+          <textarea
+            value={data ? data.body : undefined}
             className="createEdit-input text"
             placeholder="text"
             style={{ resize: 'none', height: '168px' }}
             {...register('text', {
-              onChange: ((e) => setData(e.target.value)),
+              onChange: (data ? (e) => setData(e.target.value) : undefined),
+              required: (data ? false : 'Text is required')
             })}
-          /> : <textarea
-            className="createEdit-input text"
-            placeholder="Text"
-            style={{ resize: 'none', height: '168px' }}
-            {...register('text', {
-              required: 'Text is required',
-            })}
-          />}
+          />
           <div className="createEdit-tags-container" style={{ display: 'flex', flexDirection: 'column' }}>
             <p className="createEdit-tags">Tags</p>
             { tags && tags.map((item, index) => {
@@ -175,6 +161,9 @@ export const ArticleCreateEdit = (props: Props) => {
           </div>
         </form>
       </div>
-    </div>
+    </section>
   )
 }
+
+// вынести мапы за рендер
+// Общие контейнеры менять на секшены

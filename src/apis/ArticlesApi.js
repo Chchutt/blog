@@ -1,4 +1,5 @@
 import axios from 'axios'
+// instance
 
 export async function articlesApi(value = 5) {
   const res = await axios.get(`https://blog.kata.academy/api/articles?limit=5&offset=${value}`, {

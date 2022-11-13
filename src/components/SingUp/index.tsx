@@ -1,10 +1,10 @@
-import '../Body/index.scss'
-import './index.scss'
 import { Link, Navigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import '../Body/index.scss'
+import './index.scss'
 import { loginProfile, profileEdited, registrationProfile } from '../../redux/actions/articleAction'
 import { Profile } from '../../redux/actions/actionCreators'
 

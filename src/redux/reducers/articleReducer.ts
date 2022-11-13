@@ -2,7 +2,7 @@ import {
   ArticleActions, ArticleState, ProfileActions, ProfileActionTypes, ProfileState
 } from '../actions/actionCreators'
 import { ArticlesActionTypes } from '../actions/ArticlesActionTypes'
-
+// initialstate
 const articlePoolState = {
   articles: [],
   loadingArticles: false,

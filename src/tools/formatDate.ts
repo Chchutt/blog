@@ -1,4 +1,4 @@
-export function dateTool(date: string) {
+export function formatDate(date: string): string {
   const day = date.slice(8, 10)
   const month = date.slice(5, 7)
   const year = date.slice(0, 4)
@@ -32,7 +32,7 @@ export function dateTool(date: string) {
   }
 }
 
-export const desLenCheck = (text: string, limit: number) => {
+export const formatDesc = (text: string, limit: number) => {
   if (text.length > limit) {
     return text.slice(0, limit) + '...'
   }
