@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import './index.scss'
-import { loginProfile, profileEdited, registrationProfile } from '../../redux/actions/articleAction'
-import { Profile } from '../../redux/actions/actionCreators'
+import { loginProfile, profileEdited, registrationProfile } from '../../store/actions/articleAction'
+import { Profile } from '../interfaces'
 
 type FormValues = {
   username: string,

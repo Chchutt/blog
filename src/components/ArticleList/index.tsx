@@ -4,8 +4,8 @@ import { Pagination, Spin } from 'antd'
 
 import { ArticleItem } from '../ArticleItem'
 import './index.scss'
-import { SuperArticleState } from '../../redux/actions/actionCreators'
-import { getArticleList } from '../../redux/actions/articleAction'
+import { getArticleList } from '../../store/actions/articleAction'
+import { SuperArticleState } from '../interfaces'
 
 import { ArticlesContainer } from './styles'
 

@@ -1,11 +1,10 @@
 import { Provider } from 'react-redux'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-import './index.scss'
 import { createGlobalStyle } from 'styled-components'
 
 import { App } from './components/App'
-import { store } from './redux/store'
+import { store } from './store/store'
 
 const GlobalStyle = createGlobalStyle`
 * {

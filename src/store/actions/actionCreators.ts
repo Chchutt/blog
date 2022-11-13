@@ -1,3 +1,5 @@
+import { ArticleFace } from '../../components/interfaces'
+
 import { ArticlesActionTypes } from './ArticlesActionTypes'
 
 export enum ProfileActionTypes {
@@ -9,40 +11,6 @@ export enum ProfileActionTypes {
   ARTICLE_POST_SUCCESS = 'ARTICLE_POST_SUCCESS',
   ARTICLE_DELETE_SUCCESS = 'ARTICLE_DELETE_SUCCESS',
   ARTICLE_UPDATE_SUCCESS = 'ARTICLE_UPDATE_SUCCESS'
-}
-export interface SuperArticleState{
-  articles: ArticleState
-}
-export interface ArticleState {
-  articles: ArticleFace[];
-  article?: ArticleFace[];
-  loadingArticles: boolean;
-  error: null | Error;
-  paginationValue: number;
-}
-export interface ArticleFace{
-  author: ArticleAuthor;
-  body: string;
-  createdAt: string;
-  description: string;
-  favorited: boolean;
-  favoritesCount: number;
-  slug: string;
-  tagList: [];
-  title: string;
-  updatedAt: string;
-}
-export interface ArticleAuthor{
-  following: boolean;
-  image: string;
-  username: string;
-}
-export interface ProfileState {
-  registration?: boolean,
-  isLogin?: boolean,
-}
-export interface Profile {
-  profile: ProfileState
 }
 export interface ArticleUpdateSuccess{
   type: ProfileActionTypes.ARTICLE_UPDATE_SUCCESS

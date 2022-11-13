@@ -8,8 +8,8 @@ import {
   articlePost,
   getCurrentArticle,
   updatePost,
-} from '../../redux/actions/articleAction'
-import { ArticleFace, Profile } from '../../redux/actions/actionCreators'
+} from '../../store/actions/articleAction'
+import { ArticleFace, Profile } from '../interfaces'
 
 import { Props } from './interfaces'
 

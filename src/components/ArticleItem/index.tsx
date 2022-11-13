@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
 import React, { useState } from 'react'
 
-import { ArticleFace, SuperArticleState } from '../../redux/actions/actionCreators'
 import { delArticleBySlug, favorArticleBySlug } from '../../apis/ArticlesApi'
+import { ArticleFace, SuperArticleState } from '../interfaces'
 
 import { ArticleTitleLikes } from './ArticleTitleLikes'
 import { ProfileContent } from './ProfileContent'

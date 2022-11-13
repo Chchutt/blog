@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 
-import { articleReducer, profileReducer } from './articleReducer'
+import { articleReducer } from './articleReducer'
+import { profileReducer } from './profileReducer'
 
 export type RootState = ReturnType<typeof rootReducer>;
 

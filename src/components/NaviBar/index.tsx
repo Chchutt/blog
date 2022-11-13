@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Profile } from '../../redux/actions/actionCreators'
-import { logOut } from '../../redux/actions/articleAction'
-
 import './index.scss'
+import { Profile } from '../interfaces'
+import { logOut } from '../../store/actions/articleAction'
+
 import { BtnContainer, Container } from './styles'
 import { Title } from './Title'
 import { Button } from './Buttons'

@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom'
 
-import { HomePage } from '../../pages/HomePage'
-import { SingUpPage } from '../../pages/SingUpPage'
+import { HomePage } from '../../core/pages/HomePage'
+import { SingUpPage } from '../../core/pages/SingUpPage'
 import { Layout } from '../Layout'
-import { ArticleCreateEditPage } from '../../pages/ArticleCreateEditPage'
-import { PageNotFound } from '../../pages/PageNotFound'
-import { PostPage } from '../../pages/PostPage'
+import { ArticleCreateEditPage } from '../../core/pages/ArticleCreateEditPage'
+import { PageNotFound } from '../../core/pages/PageNotFound'
+import { PostPage } from '../../core/pages/PostPage'
 
 export function App() {
   return (
