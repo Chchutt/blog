@@ -11,9 +11,8 @@ import {
 } from '../../redux/actions/articleAction'
 import { ArticleFace, Profile } from '../../redux/actions/actionCreators'
 
-interface Props{
-    flag: boolean
-}
+import { Props } from './interfaces'
+
 export const ArticleCreateEdit = (props: Props) => {
   const { flag } = props
   const isLoginState = useSelector((state: Profile) => state.profile.isLogin)

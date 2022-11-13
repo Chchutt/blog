@@ -31,7 +31,6 @@ export interface ArticleFace{
   tagList: [];
   title: string;
   updatedAt: string;
-  index: number
 }
 export interface ArticleAuthor{
   following: boolean;

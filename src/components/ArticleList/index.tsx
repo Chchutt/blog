@@ -7,6 +7,8 @@ import './index.scss'
 import { SuperArticleState } from '../../redux/actions/actionCreators'
 import { getArticleList } from '../../redux/actions/articleAction'
 
+import { ArticlesContainer } from './styles'
+
 export function ArticleList() {
   const articlesState = useSelector((state:SuperArticleState) => state.articles.articles)
   const paginationState = useSelector((state: SuperArticleState) => state.articles.paginationValue)
@@ -23,7 +25,7 @@ export function ArticleList() {
     } = item
     return (
       <ArticleItem
-        index={index}
+        key={index}
         updatedAt={updatedAt}
         title={title}
         slug={slug}
@@ -38,7 +40,7 @@ export function ArticleList() {
     )
   })
   return (
-    <section className="articleList-container">
+    <ArticlesContainer>
       { articlesState.length === 0 && <Spin />}
       {elements}
       { articlesState.length > 1 && <Pagination
@@ -47,6 +49,6 @@ export function ArticleList() {
         onChange={(page) => setCurrentPage(page * 5)}
         style={{ marginBottom: '20px' }}
       /> }
-    </section>
+    </ArticlesContainer>
   )
 }

@@ -5,6 +5,7 @@ import { SingUpPage } from '../../pages/SingUpPage'
 import { Layout } from '../Layout'
 import { ArticleCreateEditPage } from '../../pages/ArticleCreateEditPage'
 import { PageNotFound } from '../../pages/PageNotFound'
+import { PostPage } from '../../pages/PostPage'
 
 export function App() {
   return (
@@ -12,7 +13,7 @@ export function App() {
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="articles/" element={<HomePage />} />
-        <Route path="articles/:id" element={<HomePage />} />
+        <Route path="articles/:id" element={<PostPage />} />
         <Route path="articles/:id/edit-page" element={<ArticleCreateEditPage flag={false} />} />
         <Route path="articles/new-article" element={<ArticleCreateEditPage flag />} />
         <Route
